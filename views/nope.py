@@ -13,7 +13,7 @@ layout = html.Div(children=[
         children=[
             html.Div(
                 children=[html.Img(
-                    src='assets/lost.png',
+                    src='assets/lost.webp',
                     style={
                         'max-width': '30%',
                         'display': 'block',

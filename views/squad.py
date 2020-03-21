@@ -216,7 +216,7 @@ layout = html.Div(children=[
                         html.Div(
                             id = "squad_no-content",
                             children=[
-                                html.Img(src='assets/maapin.png', style={'display': 'block', 'max-width':'30%', 'margin-left': 'auto',
+                                html.Img(src='assets/maapin.webp', style={'display': 'block', 'max-width':'30%', 'margin-left': 'auto',
                                     'margin-right': 'auto', 'margin-top':'35px'},
                                     className='row'),
                                 html.Div("Mohon maaf, Anda belum memiliki perkembangan pada periode tersebut.", style={'text-align': 'center','font-weight':'bold'})
@@ -258,7 +258,7 @@ layout = html.Div(children=[
                         html.Div(className="row",
                             children=[
                                 html.Img(
-                                    src='assets/idea.png',
+                                    src='assets/idea.webp',
                                     className="two columns",
                                     style={'max-width':'35%', 'margin-right':'14px'}
                                 ),

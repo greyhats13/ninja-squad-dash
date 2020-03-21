@@ -256,7 +256,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
             pdf = FPDF()
             pdf.add_page()
             pdf.ln(10)
-            pdf.image('assets/logo_pdf.png', x=10, y=18, w=40)
+            pdf.image('assets/logo_pdf.webp', x=10, y=18, w=40)
             pdf.set_font('Arial', 'B', 16)
             pdf.set_text_color(220,50,50)
             pdf.cell(191, 10, txt="Report", align = 'R')
@@ -435,7 +435,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Terdapat 6 status paket normal :", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture1.png', x=15, y=28, w=10)
+                pdf.image('assets/Picture1.webp', x=15, y=28, w=10)
                 pdf.set_xy(27.5,28)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "Pending Pickup", 0, 1, 'L', 0)
@@ -443,7 +443,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Paket berada di seller belum di pickup oleh NinjaXpress atau seller belum drop out ke NinjaXpress", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture1.png', x=15, y=40, w=10)
+                pdf.image('assets/Picture1.webp', x=15, y=40, w=10)
                 pdf.set_xy(27.5,40)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "Pending Pickup at Distribution Point", 0, 1, 'L', 0)
@@ -451,7 +451,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Paket berada di Mitra dan belum di di pick up oleh Ninja Rider atau Ninja Driver.", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture2.png', x=15, y=52, w=10)
+                pdf.image('assets/Picture2.webp', x=15, y=52, w=10)
                 pdf.set_xy(27.5,52)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "En-route at Sorting Hub", 0, 1, 'L', 0)
@@ -459,7 +459,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Paket sudah dipick up oleh rider dan dalam perjalanan menuju station.", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture3.png', x=15, y=64, w=10)
+                pdf.image('assets/Picture3.webp', x=15, y=64, w=10)
                 pdf.set_xy(27.5,64)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "Arrived at Sorting Hub", 0, 1, 'L', 0)
@@ -467,7 +467,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Paket sudah tiba di station dan diproses lebih lanjut.", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture2.png', x=15, y=76, w=10)
+                pdf.image('assets/Picture2.webp', x=15, y=76, w=10)
                 pdf.set_xy(27.5,76)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "On Vehicle for Delivery", 0, 1, 'L', 0)
@@ -475,7 +475,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Proses pengantaran paket ke alamat penerima.", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture4.png', x=15, y=88, w=10)
+                pdf.image('assets/Picture4.webp', x=15, y=88, w=10)
                 pdf.set_xy(27.5,88)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "Completed", 0, 1, 'L', 0)
@@ -487,7 +487,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Terdapat 3 status paket tidak normal :", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture2.png', x=15, y=108, w=10)
+                pdf.image('assets/Picture2.webp', x=15, y=108, w=10)
                 pdf.set_xy(27.5,108)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "Return to Sender (RTS)", 0, 1, 'L', 0)
@@ -495,7 +495,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Paket dikirim kepada penerima maksimal 2 kali namun penerima tidak ada, maka paket dikembalikan kepada pengirim.", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture3.png', x=15, y=120, w=10)
+                pdf.image('assets/Picture3.webp', x=15, y=120, w=10)
                 pdf.set_xy(27.5,120)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "On Hold", 0, 1, 'L', 0)
@@ -503,7 +503,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                 pdf.set_font('Arial', size=9)
                 pdf.cell(190, 5, "Paket sudah diproses oleh ninja namun terdapat kendala.", 0, 1, 'L', 0)
 
-                pdf.image('assets/Picture4.png', x=15, y=132, w=10)
+                pdf.image('assets/Picture4.webp', x=15, y=132, w=10)
                 pdf.set_xy(27.5,132)
                 pdf.set_font('Arial', 'B', size=9)
                 pdf.cell(190, 5, "Cancelled", 0, 1, 'L', 0)
@@ -537,9 +537,9 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                     pos_x_bar = pdf.get_x()
                     pos_y_bar = pdf.get_y()
                     pdf.set_font('Arial', 'B', size=11)
-                    plt.savefig('assets/temp/nonrtssla2.png', bbox_inches='tight')
+                    plt.savefig('assets/temp/nonrtssla2.webp', bbox_inches='tight')
                     plt.close()
-                    pdf.image('assets/temp/nonrtssla2.png', x=32.5, y=pos_y_bar+2, w=142.5)
+                    pdf.image('assets/temp/nonrtssla2.webp', x=32.5, y=pos_y_bar+2, w=142.5)
                     pos_x_bar = pdf.get_x()
                     pos_y_bar = pdf.get_y()+52
                     try:
@@ -552,9 +552,9 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                     	pdf.set_font('Arial', 'B', size=11)
                     	pdf.set_xy(pos_x_bar,pos_y_bar+1)
                     	pdf.cell(190, 5, "VS", 0, 1, 'C', 0)
-                    	plt.savefig('assets/temp/nonrtssla.png', bbox_inches='tight')
+                    	plt.savefig('assets/temp/nonrtssla.webp', bbox_inches='tight')
                     	plt.close()
-                    	pdf.image('assets/temp/nonrtssla.png', x=32.5, y=pos_y_bar+5, w=142.5)
+                    	pdf.image('assets/temp/nonrtssla.webp', x=32.5, y=pos_y_bar+5, w=142.5)
                     	pos_x_bar = pdf.get_x()
                     	pos_y_bar = pdf.get_y()+52
                     except:
@@ -580,7 +580,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                     ax.add_artist(centre_circle)# Equal aspect ratio ensures that pie is drawn as a circle
                     ax.axis('equal')
                     ax.set_title('Parcels Status (This Week)')
-                    FigureCanvasAgg(fig).print_png('assets/temp/percentage2.png', dpi=300)
+                    FigureCanvasAgg(fig).print_png('assets/temp/percentage2.webp', dpi=300)
                     pdf.set_xy(10,pos_y_bar+3.5)
                     pdf.set_font('Arial', size=9)
                     if len(last_tempcom)!=0:
@@ -591,7 +591,7 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                     pos_y_bar_temp = pdf.get_y()
                     if len(last_tempcom)!=0:
                     	# pdf.set_xy(10,pos_y_bar+5)
-                    	pdf.image('assets/temp/percentage2.png', x=110, w=90)
+                    	pdf.image('assets/temp/percentage2.webp', x=110, w=90)
                     	sizes = np.array([len(last_temp[last_temp.granular_status=="Completed"]), len(last_temp[last_temp.granular_status=="On Hold"]), len(last_temp[last_temp.granular_status=="Cancelled"]), len(last_temp[~last_temp.granular_status.isin(["Completed","On Hold","Cancelled"])])])
                     	fig = Figure(tight_layout=True)
                     	ax = fig.add_subplot(1,1,1)
@@ -608,14 +608,14 @@ def pull_data(klik_download_excel, klik_download_pdf, squad_id, shipper_id, pdf_
                     	ax.set_title('Parcels Status (Last Week)')
                     	FigureCanvasAgg(fig).print_jpeg('assets/temp/percentage.jpeg', dpi=300)
                     	pdf.set_xy(10,pos_y_bar_temp+1)
-                    	pdf.image('assets/temp/percentage.png', w=90)
+                    	pdf.image('assets/temp/percentage.webp', w=90)
                     	pdf.set_xy(10,pos_y_bar_temp+17.5)
                     	pdf.set_font('Arial', 'B', size=11)
                     	pdf.cell(190, 5, "VS", 0, 1, 'C', 0)
                     	pos_x_bar = pdf.get_x()
                     	pos_y_bar = pdf.get_y()+27.5
                     else:
-                    	pdf.image('assets/temp/percentage2.png', x=55, y=pos_y_bar_temp+1, w=90)
+                    	pdf.image('assets/temp/percentage2.webp', x=55, y=pos_y_bar_temp+1, w=90)
                     	pos_x_bar = pdf.get_x()
                     	pos_y_bar = pdf.get_y()+50
                 except:

@@ -333,7 +333,7 @@ def kirimemail(penerima, token, fullname):
                 <td>&nbsp;</td>
                 <td class="container">
                   <div class="content">
-                  <div class="imgContainer"><img src="https://i.ibb.co/J2mN0hK/logoninja.png" alt="Logo Ninja" class="responsive"></div>
+                  <div class="imgContainer"><img src="https://i.ibb.co/J2mN0hK/logoninja.webp" alt="Logo Ninja" class="responsive"></div>
 
                     <!-- START CENTERED WHITE CONTAINER -->
                     <table role="presentation" class="main">
@@ -344,7 +344,7 @@ def kirimemail(penerima, token, fullname):
                           <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                               <td>
-                                <img src="https://www.ninjavan.co/assets/images/landing/desktop_header.png" alt="Header" class="responsive">
+                                <img src="https://www.ninjavan.co/assets/images/landing/desktop_header.webp" alt="Header" class="responsive">
                                 <p>Halo, """+fullname+""".</p>
                                 <p>Sebelumnya, kami ucapkan selamat bergabung menjadi bagian dari Ninja Squad!</p>
                                 <p>Untuk memantau perkembangan Anda dalam menjadi Ninja Squad, kami telah menyediakan platform bernama SquaDash untuk menjadi dashboard Anda. Melalui SquaDash, Anda dapat melihat perolehan komisi Anda atau volume pengiriman yang shipper Anda lakukan dalam rentang waktu yang Anda inginkan. Untuk masuk ke SquaDash, silakan melakukan klik pada tombol di bawah dan atur kata sandi Anda.</p>

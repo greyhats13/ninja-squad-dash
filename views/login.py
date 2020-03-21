@@ -58,16 +58,16 @@ def update_salam(input):
     jamskg = datetime.now().hour+7
     if (0 <= jamskg < 4) or (19 <= jamskg < 28) :
     	salam = 'Selamat malam'
-    	gbrsalam = 'assets/malem.png'
+    	gbrsalam = 'assets/malem.webp'
     if (7 <= jamskg < 11) or (jamskg >= 28) :
     	salam = 'Selamat pagi'
-    	gbrsalam = 'assets/pagi.png'
+    	gbrsalam = 'assets/pagi.webp'
     if 11 <= jamskg < 15 :
     	salam = 'Selamat siang'
-    	gbrsalam = 'assets/pagi.png'
+    	gbrsalam = 'assets/pagi.webp'
     if 15 <= jamskg < 19 :
     	salam = 'Selamat sore'
-    	gbrsalam = 'assets/sore.png'
+    	gbrsalam = 'assets/sore.webp'
     return html.Img(src=gbrsalam, style={'display': 'block', 'margin-left': 'auto',
                     'margin-right': 'auto', 'margin-bottom': '10px'},
                     className='twelve columns'), html.H2(salam+", Squad!", style={'text-align': 'center'})

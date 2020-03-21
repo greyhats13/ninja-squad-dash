@@ -367,7 +367,7 @@ def kirimemail(penerima, fullname, terakhirlihat, token):
                 <td>&nbsp;</td>
                 <td class="container">
                   <div class="content">
-                  <div class="imgContainer"><img src="https://i.ibb.co/J2mN0hK/logoninja.png" alt="Logo Ninja" class="responsive"></div>
+                  <div class="imgContainer"><img src="https://i.ibb.co/J2mN0hK/logoninja.webp" alt="Logo Ninja" class="responsive"></div>
 
                     <!-- START CENTERED WHITE CONTAINER -->
                     <table role="presentation" class="main">

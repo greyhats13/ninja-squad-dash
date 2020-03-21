@@ -325,7 +325,7 @@ layout = html.Div(children=[
                         html.Div(
                             id = "admin_no-content",
                             children=[
-                                html.Img(src='assets/maapin.png', style={'display': 'block', 'max-width':'30%', 'margin-left': 'auto',
+                                html.Img(src='assets/maapin.webp', style={'display': 'block', 'max-width':'30%', 'margin-left': 'auto',
                                     'margin-right': 'auto', 'margin-top':'35px'},
                                     className='row'),
                                 html.Div("Mohon maaf, tidak ada perkembangan pada periode tersebut.", style={'text-align': 'center','font-weight':'bold'})

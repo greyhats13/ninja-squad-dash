@@ -333,7 +333,7 @@ def kirimemail(penerima, token, fullname):
                 <td>&nbsp;</td>
                 <td class="container">
                   <div class="content">
-                  <div class="imgContainer"><img src="https://i.ibb.co/J2mN0hK/logoninja.png" alt="Logo Ninja" class="responsive"></div>
+                  <div class="imgContainer"><img src="https://i.ibb.co/J2mN0hK/logoninja.webp" alt="Logo Ninja" class="responsive"></div>
 
                     <!-- START CENTERED WHITE CONTAINER -->
                     <table role="presentation" class="main">
@@ -344,7 +344,7 @@ def kirimemail(penerima, token, fullname):
                           <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                               <td>
-                                <img src="https://www.ninjavan.co/assets/images/landing/desktop_header.png" alt="Header" class="responsive">
+                                <img src="https://www.ninjavan.co/assets/images/landing/desktop_header.webp" alt="Header" class="responsive">
                                 <p>Halo, """+fullname+""".</p>
                                 <p>Sepertinya Anda baru saja meminta untuk pergantian kata sandi. Untuk melakukan konfirmasi pergantian kata sandi, silakan melakukan klik pada tombol di bawah.</p>
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">

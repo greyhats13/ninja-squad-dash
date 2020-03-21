@@ -16,7 +16,7 @@ layout = html.Div(children=[
                     className="row",
                     children=[
                         html.Img(
-                            src='assets/dadah.png',
+                            src='assets/dadah.webp',
                             style={
                                 'max-width': '30%',
                                 'display': 'block',

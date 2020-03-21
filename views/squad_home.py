@@ -27,7 +27,7 @@ layout = html.Div(children=[
                                 html.Div(className="row",
                                     children=[
                                         html.Img(
-                                            src='assets/squad.png',
+                                            src='assets/squad.webp',
                                             className="two columns",
                                             style={'max-width': '30%'}
                                         ),

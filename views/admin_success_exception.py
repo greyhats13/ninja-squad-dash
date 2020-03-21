@@ -14,7 +14,7 @@ layout = html.Div(children=[
             html.Div(
                 children=[
                     html.Img(
-                        src='assets/senang.png',
+                        src='assets/senang.webp',
                         style={
                             'max-width': '30%',
                             'display': 'block',
