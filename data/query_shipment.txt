@@ -1,0 +1,154 @@
+SELECT a.*,
+       CASE
+           WHEN cast(CASE
+                         WHEN delivery_fee_origin = 'null'
+                              OR delivery_fee_origin IS NULL
+                              OR delivery_fee_origin = (' ')
+                              OR delivery_fee_origin LIKE '%E+%' THEN '0'
+                         ELSE delivery_fee_origin
+                     END AS decimal) > 1000000 THEN 0
+           ELSE cast(CASE
+                         WHEN delivery_fee_origin = 'null'
+                              OR delivery_fee_origin IS NULL
+                              OR delivery_fee_origin = (' ')
+                              OR delivery_fee_origin LIKE '%E+%' THEN '0'
+                         ELSE delivery_fee_origin
+                     END AS decimal)
+       END delivery_fee
+FROM
+  (SELECT o.created_at + interval 7 hour AS order_creation_datetime,
+          o.tracking_id,
+          o.shipper_id,
+          s.name AS shipper_name,
+          s.sales_person,
+          sp.name AS sales_person_name,
+          CONCAT(o.to_address1, ' ',o.to_address2) AS delivery_address,
+          CASE
+              WHEN o.rts = 1 THEN 'RTS'
+              ELSE 'Non RTS'
+          END AS rts_flag,
+          o.service_type,
+          o.granular_status,
+          o.to_postcode,
+          o.comments AS order_comments,
+          i1.created_at + interval 7 hour as first_inbound_datetime,
+          date(i1.created_at + interval 11 hour) as inbound_cutoff,
+          substring(substring(o.pricing_info,position('fromBillingZone' in o.pricing_info),47),43) from_billing_zone,
+          substring(substring(o.pricing_info,position('toBillingZone' in o.pricing_info),45),41) to_billing_zone,
+          hi1.name AS first_inb_hub,
+          coalesce(hz.name,hrl.name) AS dest_hub,
+          CASE
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('BGR','JKT','CMG','LAZ','LZD','CNP','LEX') THEN 'Greater Jakarta'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('BDG','CBN','CLG','BDO','PWA','SBM','TSK','CNN') THEN 'West Java'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('SOC','SRG','JOG') THEN 'Central Java'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('MLG','SUB','SDR') THEN 'East Java'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('BTJ','MDN','PKU','BTH','GNS','MAP','KNO','PDG','PKU','TNJ','KNO') THEN 'Northern Sumatera'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('BKS','PGK','PLM','TJQ','TKG','LMP','DJB') THEN 'Southern Sumatera'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('ARD','AMQ','ABU','BLI','BJW','BMU','ENE','LBJ','LWE','DJJ','KOE','LOP','MKQ','SOQ','BIK','MKW','TIM','MOF','RTG','SWQ','TMC','TTE','WGP','LKA','DPS','RTI') THEN 'East Indonesia'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('BDJ','BPN','PKY','PNK','TRK','BSH') THEN 'Kalimantan'
+            WHEN left(coalesce(hz.name,hrl.name), 3) IN ('MDC','GTO','PLW','UPG','KDI','BUW','LUW','MJU','WNI') THEN 'Sulawesi'
+            ELSE coalesce(hz.name,hrl.name)
+          END AS dest_region,
+          CASE
+              WHEN LOCATE('originalWeight', o.data) > 0
+                  AND LOCATE('originalDimensions', o.data) > 0 THEN REPLACE(REPLACE(REPLACE(substring(substring(o.data, 1, LOCATE('originalDimensions', o.data) -2), LOCATE('originalWeight', o.data) + 16, 10), ',', ''), ' ', ''), ':', '')
+              ELSE NULL
+          END AS submitted_weight,
+          o.weight actual_weight,
+          CASE
+              WHEN o.parcel_size_id = 0 THEN 'S'
+              WHEN o.parcel_size_id = 1 THEN 'M'
+              WHEN o.parcel_size_id = 2 THEN 'L'
+              WHEN o.parcel_size_id = 3 THEN 'XL'
+              ELSE 'OTHERS'
+          END AS parcel_size,
+          CASE
+              WHEN LOCATE('width', dimensions) = 0 THEN 'N/A'
+              ELSE REPLACE(REPLACE(substring(substring(dimensions, LOCATE('width', dimensions), 13), LOCATE(':', substring(dimensions, LOCATE('width', dimensions), 13)) + 1, 4), ',', ''), ' ', '')
+          END AS width,
+          CASE
+              WHEN LOCATE('height', dimensions) = 0 THEN 'N/A'
+              ELSE REPLACE(REPLACE(substring(substring(dimensions, LOCATE('height', dimensions), 14), LOCATE(':', substring(dimensions, LOCATE('height', dimensions), 14)) + 1, 4), ',', ''), ' ', '')
+          END AS height,
+          CASE
+              WHEN LOCATE('length', dimensions) = 0 THEN 'N/A'
+              ELSE REPLACE(REPLACE(substring(substring(dimensions, LOCATE('length', dimensions), 14), LOCATE(':', substring(dimensions, LOCATE('length', dimensions), 14)) + 1, 4), ',', ''), ' ', '')
+          END AS length,
+          tr.service_end_time + interval 7 hour AS pod_datetime,
+          substring(b.data, locate('"name":"', b.data) + 8, locate('","contact":"', b.data) - 10) AS pod_recipient_name,
+          GROUP_CONCAT(p.url SEPARATOR '| ') AS pod_photo_url,
+          GROUP_CONCAT(substring(b.data, locate('"url":"', b.data) + 7, 82) SEPARATOR '; ') AS pod_signature_url,
+          t1.service_end_time + interval 7 hour AS first_attempt_at,
+          fr1.description AS first_fail_reason,
+          t3.service_end_time + interval 7 hour AS last_attempt_at,
+          fr2.description AS last_fail_reason,
+          substring(o.pricing_info, LOCATE('delivery_fee', pricing_info) + 16,LOCATE('gst', pricing_info) - LOCATE('delivery_fee',pricing_info) - 21) delivery_fee_origin,
+          t1.name AS first_att_name ,
+          t1.email AS first_att_email ,
+          t1.contact AS first_att_contact ,
+          t1.address1 AS first_att_address1 ,
+          t1.address2 AS first_att_address2 ,
+          t1.postcode AS first_att_postcode
+   FROM orders o
+   INNER JOIN (
+     SELECT legacy_id,
+            name,
+            sales_person
+     FROM shipper_prod_gl.shippers
+     WHERE 1=1
+        AND lower(country)='id'
+        AND (lower(sales_person) LIKE 'nsq%' OR lower(name) LIKE '%ninja%squad%')
+    ) s ON s.legacy_id = o.shipper_id
+   LEFT JOIN salespersons sp ON sp.code = s.sales_person
+  LEFT JOIN transactions t1 ON o.id = t1.order_id
+  AND t1.type = 'DD'
+  LEFT JOIN transactions t2 ON o.id = t2.order_id
+  AND t2.type = 'DD'
+  AND t2.id < t1.id
+  LEFT JOIN transaction_failure_reason tf1 ON t1.id = tf1.transaction_id
+  LEFT JOIN transaction_failure_reason tf2 ON t1.id = tf2.transaction_id
+  AND tf1.id > tf2.id
+  LEFT JOIN driver_prod_gl.failure_reasons fr1 ON fr1.id = tf1.failure_reason_id
+  AND fr1.system_id = 'id'
+  LEFT JOIN transactions t3 ON t3.order_id = o.id
+  AND t3.type = 'DD'
+  LEFT JOIN core_prod_id.transactions t4 ON t4.order_id = o.id
+  AND t4.type = 'DD'
+  AND t4.id > t3.id
+  LEFT JOIN transaction_failure_reason tf3 ON t3.id = tf3.transaction_id
+  LEFT JOIN transaction_failure_reason tf4 ON t3.id = tf4.transaction_id
+  AND tf3.id > tf4.id
+  LEFT JOIN driver_prod_gl.failure_reasons fr2 ON fr2.id = tf3.failure_reason_id
+  AND fr2.system_id = 'id'
+  LEFT JOIN transactions tr ON tr.order_id = o.id
+  AND tr.type = 'DD'
+  AND tr.status = 'success'
+  LEFT JOIN core_prod_id.inbound_scans i1 ON i1.order_id = o.id
+  AND i1.type = 2
+  LEFT JOIN core_prod_id.inbound_scans i2 on i2.order_id = o.id
+  AND i2.type = 2
+  AND i2.id < i1.id
+  LEFT JOIN core_prod_id.hubs hi1 ON hi1.id = i1.hub_id
+  LEFT JOIN waypoints wp ON t1.waypoint_id = wp.id
+  LEFT JOIN
+     (SELECT hub_id,
+             legacy_zone_id
+      FROM addressing_prod_gl.zones_view
+      WHERE lower(system_id) = 'id') z ON z.legacy_zone_id = wp.routing_zone_id
+  LEFT JOIN core_prod_id.hubs hz ON hz.id = z.hub_id
+  LEFT JOIN core_prod_id.route_logs rl ON rl.id = t1.route_id
+  LEFT JOIN core_prod_id.hubs hrl ON hrl.id = rl.hub_id
+  LEFT JOIN transaction_blob tb ON tb.transaction_id = tr.id
+  LEFT JOIN blobs b ON b.id = tb.blob_id
+  LEFT JOIN waypoint_photos p ON p.waypoint_id = tr.waypoint_id
+
+   WHERE 1=1
+   AND o.created_at >= date('{{placeholder_start}}') - interval 7 hour
+   AND o.created_at < date('{{placeholder_end}}') - interval 7 hour + interval 1 DAY
+  AND i2.id IS NULL
+  AND t2.id IS NULL
+  AND t4.id IS NULL
+  AND tf2.id IS NULL
+  AND tf4.id IS NULL
+   GROUP BY o.tracking_id) a
+

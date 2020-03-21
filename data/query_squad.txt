@@ -1,0 +1,1 @@
+select id, code, name, created_at from salespersons where left(code,3) = 'NSQ' and id > {{placeholder}}

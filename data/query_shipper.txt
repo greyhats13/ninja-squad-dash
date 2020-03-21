@@ -1,0 +1,13 @@
+SELECT SUBSTRING_INDEX(s.sales_person,'-',-1) as squad_code,
+sp.name as squad_name,
+s.name as shipper_name,
+s.legacy_id as shipper_id,
+concat(scr.id, ' - ', scr.name) as pricing_script,
+s.created_at+interval 7 hour as create_dashboard
+from shipper_prod_gl.shippers s
+inner join salespersons sp on s.sales_person = sp.code
+left join script_engine_prod_gl.shipper_scripts sc on s.id = sc.shipper_id
+left join script_engine_prod_gl.scripts_v2 scr on sc.script_id = scr.id
+where s.system_id = 'id'
+and s.name like '%ninja%%squad%'
+and s.legacy_id > {{placeholder}}
